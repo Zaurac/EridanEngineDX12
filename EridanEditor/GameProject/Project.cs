@@ -76,12 +76,13 @@ namespace EridanEditor.GameProject
 
         public void Unload()
         {
-
+            UndoRedo.Reset();
         }
 
         public static void Save(Project project)
         {
             Serializer.ToFile(project, project.FullPath);
+            Logger.Log(MessageType.Info, $"Saved project {project.Name} to {project.FullPath}");
         }
 
         [OnDeserialized]
@@ -124,8 +125,6 @@ namespace EridanEditor.GameProject
         {
             Name = name;
             Path = path;
-
-            
 
             OnDeserialized(new StreamingContext());
         }

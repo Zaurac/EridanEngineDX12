@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Windows.Shapes;
 
 namespace EridanEditor.GameProject
 {
@@ -99,6 +100,7 @@ namespace EridanEditor.GameProject
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+                Logger.Log(MessageType.Error, $"Failed to read project data");
                 throw;
             }
         }

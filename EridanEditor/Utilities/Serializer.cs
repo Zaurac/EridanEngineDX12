@@ -22,8 +22,8 @@ namespace EridanEditor.Utilities
 			catch (Exception ex)
 			{
                 Debug.WriteLine(ex.Message);
-                //TODO: log error
-			}
+                Logger.Log(MessageType.Error, $"Failed to deserialize {instance} to {path}");
+            }
         }
 
         public static T FromFile<T>(string path)
@@ -38,8 +38,8 @@ namespace EridanEditor.Utilities
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                //TODO: log error
-                return default(T);
+                Logger.Log(MessageType.Error, $"Failed to deserialize {path}");
+                throw;
             }
         }
     }

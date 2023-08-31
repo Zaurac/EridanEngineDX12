@@ -45,7 +45,7 @@
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock Text="{Binding Name}"/>
                                             <Button Content="Remove" Command="{Binding ParentScene.RemoveGameEntitiesCommand}"
-                                                    CommandParameter="{Binding}"/>
+                                                    CommandParameter="{Binding}" Margin="5,0,0,0"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>

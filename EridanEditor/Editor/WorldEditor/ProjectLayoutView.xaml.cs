@@ -1,5 +1,6 @@
 ﻿using EridanEditor.Components;
 using EridanEditor.GameProject;
+using EridanEditor.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +37,29 @@ namespace EridanEditor.Editor
 
         private void OnGameEntities_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var entity = (sender as ListBox).SelectedItems[0];
-            GameEntityView.Instance.DataContext = entity;
+            GameEntityView.Instance.DataContext = null;
+            if(e.AddedItems.Count > 0 ) 
+            {
+                GameEntityView.Instance.DataContext = (sender as ListBox).SelectedItems[0];
+            }
+
+            var listBox = sender as ListBox;
+            var newSelection = listBox.SelectedItems.Cast<GameEntity>().ToList();
+            var previousSelection = newSelection.Except(e.AddedItems.Cast<GameEntity>()).Concat(e.RemovedItems.Cast<GameEntity>()).ToList();
+
+            Project.UndoRedo.Add(new UndoRedoAction(
+                () => // undo Action
+                {
+                    listBox.UnselectAll();
+                    previousSelection.ForEach(x =>(listBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                () => // redo Action
+                {
+                    listBox.UnselectAll();
+                    newSelection.ForEach(x => (listBox.ItemContainerGenerator.ContainerFromItem(x) as ListBoxItem).IsSelected = true);
+                },
+                "Selection changed"
+            ));
         }
     }
 }
