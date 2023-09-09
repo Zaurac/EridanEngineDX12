@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace EridanEditor.Components
 {
+    interface IMComponent { }    
+
     [DataContract]
-    public class Component : ViewModelBase
+    abstract class Component : ViewModelBase
     {
         [DataMember]
         public GameEntity Owner { get; private set; }
@@ -19,5 +21,10 @@ namespace EridanEditor.Components
             Debug.Assert(owner != null);    
             Owner = owner;
         }
+    }
+
+    abstract class MSComponent<T> : ViewModelBase, IMComponent where T : Component 
+    { 
+
     }
 }

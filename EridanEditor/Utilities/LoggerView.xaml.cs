@@ -24,5 +24,19 @@ namespace EridanEditor.Utilities
         {
             InitializeComponent();
         }
+
+        private void OnClear_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Logger.Clear();
+        }
+
+        private void OnMessageFilter_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var mask = 0x0;
+            if(toggleInfo.IsChecked == true) mask |= (int)MessageType.Info;
+            if (toggleWarning.IsChecked == true) mask |= (int)MessageType.Warning;
+            if (toggleError.IsChecked == true) mask |= (int)MessageType.Error;
+            Logger.SetMessageFilter(mask);
+        }
     }
 }
