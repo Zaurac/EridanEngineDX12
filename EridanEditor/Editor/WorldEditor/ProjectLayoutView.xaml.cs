@@ -38,11 +38,6 @@ namespace EridanEditor.Editor
         private void OnGameEntities_ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GameEntityView.Instance.DataContext = null;
-            if(e.AddedItems.Count > 0 ) 
-            {
-                GameEntityView.Instance.DataContext = (sender as ListBox).SelectedItems[0];
-            }
-
             var listBox = sender as ListBox;
             var newSelection = listBox.SelectedItems.Cast<GameEntity>().ToList();
             var previousSelection = newSelection.Except(e.AddedItems.Cast<GameEntity>()).Concat(e.RemovedItems.Cast<GameEntity>()).ToList();
@@ -60,6 +55,13 @@ namespace EridanEditor.Editor
                 },
                 "Selection changed"
             ));
+
+            MSGameEntity msEntity = null;
+            if(newSelection.Any())
+            {
+                msEntity = new MSGameEntity(newSelection);
+            }
+            GameEntityView.Instance.DataContext = msEntity;
         }
     }
 }
