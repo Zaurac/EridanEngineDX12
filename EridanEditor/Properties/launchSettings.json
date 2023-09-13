@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EridanEditor": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
