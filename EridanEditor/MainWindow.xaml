@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:EridanEditor"
         xmlns:editors="clr-namespace:EridanEditor.Editor"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="EridanEditor" Height="1080" Width="1920">
+        Title="EridanEditor" Height="1080" Width="1920"
+        Style = "{StaticResource EridanWindowStyle}">
     <Grid>
         <editors:WorldEditorView/>
     </Grid>
