@@ -1,4 +1,5 @@
-﻿using EridanEditor.Utilities;
+﻿// Copyright (c) 2023 Zaurac
+using EridanEditor.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
