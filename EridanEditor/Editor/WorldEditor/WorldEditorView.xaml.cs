@@ -32,7 +32,6 @@ namespace EridanEditor.Editor
         {
             Loaded -= OnWorldEditorViewLoaded;
             Focus();
-            ((INotifyCollectionChanged)Project.UndoRedo.UndoList).CollectionChanged += (e,s) => Focus();
         }
     }
 }
